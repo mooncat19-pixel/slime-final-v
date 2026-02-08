@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tempest System Interface</title>
+<link rel="icon" href="slime.png" />
+
+<style>
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+@keyframes slash {
+  0% { opacity: 0; transform: scale(3) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1) rotate(360deg); }
+}
+@keyframes scrollOpen {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: black;
+  color: #e6f7ff;
+}
+
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),
+    url('thumb-1920-978847.jpg') center/cover;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero img {
+  width:180px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.section {
+  padding:80px 20px;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+
+.skills {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.card {
+  background:rgba(0,50,80,.7);
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 20px rgba(0,200,255,.4);
+}
+
+button {
+  font-size:1.3rem;
+  padding:15px 30px;
+  margin:10px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+}
+
+#yes { background:linear-gradient(135deg,#00d4ff,#0077ff); color:white; }
+#no { background:#555; color:white; position:relative; }
+
+#seal { display:none; font-size:2rem; margin-top:20px; animation:slash 1s ease forwards; }
+
+#slashIntro {
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:6rem;
+  z-index:9999;
+  animation:slash 1s ease forwards;
+}
+
+#page2 {
+  display:none;
+  min-height:100vh;
+  background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
+    url('z.jpg') center/cover;
+  padding:60px 20px;
+}
+
+.scroll {
+  max-width:700px;
+  margin:100px auto;
+  background:rgba(10,30,60,.85);
+  padding:40px;
+  border-radius:20px;
+  transform-origin:top;
+  animation:scrollOpen 1.2s ease forwards;
+  box-shadow:0 0 60px rgba(0,200,255,.6);
+}
+
+.scroll img {
+  width:120px;
+  display:block;
+  margin:20px auto;
+}
+
+.signature {
+  position:fixed;
+  bottom:10px;
+  right:15px;
+  font-size:.8rem;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<div id="slashIntro">⚔️</div>
+
+<div id="main" style="animation:fadeIn 2s ease forwards;">
+  <section class="hero">
+    <img src="slime.png">
+    <h1>Tempest System Interface</h1>
+    <p>Unique Skill Detected: Eternal Partnership</p>
+  </section>
+
+  <section class="section">
+    <h2>Unique Skills</h2>
+    <div class="skills">
+      <div class="card">Predator – Absolute Protection</div>
+      <div class="card">Great Sage – Eternal Guidance</div>
+      <div class="card">Raphael – Perfect Harmony</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Valentine Contract</h2>
+    <p>Will you become the Ciel to my Rimuru?</p>
+    <button id="yes">Yes 💙</button>
+    <button id="no">No ❌</button>
+    <div id="seal">✨ CONTRACT SEALED ✨</div>
+  </section>
+</div>
+
+<section id="page2">
+  <div class="scroll">
+    <h2>📜 Eternal Contract</h2>
+    <p>I choose you in every timeline. I will love you forever.</p>
+    <img src="zz.jpg" alt="Seal">
+  </div>
+</section>
+
+<div class="signature">mooncat19</div>
+
+<script>
+setTimeout(() => document.getElementById('slashIntro').remove(), 1000);
+
+const noBtn = document.getElementById('no');
+noBtn.addEventListener('mouseenter', () => {
+  noBtn.style.transform = `translate(${Math.random()*200-100}px,${Math.random()*150-75}px)`;
+});
+
+document.getElementById('yes').onclick = () => {
+  noBtn.remove();
+  document.getElementById('seal').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('page2').style.display = 'block';
+    window.scrollTo(0,0);
+  }, 800);
+};
+</script>
+
+</body>
+</html>
